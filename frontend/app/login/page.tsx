@@ -13,10 +13,13 @@ export default function LoginPage() {
 		e.preventDefault();
 
 		try {
-			const response = await axios.post("http://localhost:5000/login", {
-				email,
-				password,
-			});
+			const response = await axios.post(
+				`${process.env.NEXT_PUBLIC_API_URL}/login`,
+				{
+					email,
+					password,
+				}
+			);
 
 			if (response.status === 200) {
 				const { token } = response.data;

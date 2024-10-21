@@ -9,14 +9,11 @@ const ENV = "DEV";
 
 module.exports = {
 	app: {
-		port: parseInt(process.env.PORT),
-		base_url: "http://localhost:5000/",
+		port: process.env.PORT || 5000, // The port for the backend server
+		frontend_url: process.env.FE_URL || "http://localhost:5000", // The frontend URL for CORS
 	},
 	database: {
-		local:
-			// ENV === "DEV"
-			//   ? process.env.db_local
-			//   :
-			process.env.db_URL,
+		local: process.env.db_local, // Use local db URL if needed for dev
+		remote: process.env.db_URL, // The actual remote database URL
 	},
 };

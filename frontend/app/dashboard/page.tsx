@@ -21,7 +21,7 @@ export default function Dashboard() {
 			router.push("/login"); // Redirect to login if no token
 		} else {
 			axios
-				.get("http://localhost:5000/auth/me", {
+				.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`, {
 					headers: {
 						Authorization: token,
 					},

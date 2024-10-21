@@ -31,7 +31,7 @@ app.use("/", userRoutes);
 
 
 // listen to the server 
-const port = config.app.port;
+const port = config.app.backend_url;
 app.listen(port, () => {
     console.log(" 🔥 Server is up and running on port : " + port);
 })

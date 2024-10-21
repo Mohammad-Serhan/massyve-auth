@@ -3,10 +3,7 @@ const config = require("./config/index");
 
 //connect to DB
 // Environment : Development or Production
-mongoose.connect(config.database.local, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-});
+mongoose.connect(config.database.remote);
 
 let conn = mongoose.connection; // to hook events to know connection is working correctly
 conn.on("connected", function () {

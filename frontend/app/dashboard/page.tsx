@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 interface UserData {
 	user: {
@@ -21,15 +21,19 @@ export default function Dashboard() {
 			router.push("/login"); // Redirect to login if no token
 		} else {
 			axios
-				.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`, {
-					headers: {
-						Authorization: token,
-					},
+				.get<AxiosResponse<UserData>>(
+					`${process.env.NEXT_PUBLIC_API_URL}/auth/me`,
+					{
+						headers: {
+							Authorization: token,
+						},
+					}
+				)
+				.then((response: AxiosResponse<UserData>) => {
+					setUserData(response.data); // Assuming you have a function setUserData
 				})
-				.then((response) => {
-					setUserData(response.data);
-				})
-				.catch((error) => {
+				.catch((error: any) => {
+					// You can refine the type of error if you know the structure
 					console.error(error);
 					router.push("/login");
 				});

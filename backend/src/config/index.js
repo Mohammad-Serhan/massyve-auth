@@ -9,7 +9,7 @@ const ENV = "DEV";
 
 module.exports = {
 	app: {
-		port: parseInt(process.env.PORT) || 3000, // The port for the backend server
+		port: parseInt(process.env.PORT) || 5000, // The port for the backend server
 		frontend_url: process.env.FE_URL , // The frontend URL for CORS
 		backend_url: process.env.BE_URL , // The frontend URL for CORS
 	},

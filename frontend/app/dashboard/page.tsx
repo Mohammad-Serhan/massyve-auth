@@ -4,10 +4,20 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios, { AxiosResponse } from "axios";
 
+// Define an interface for the user data
 interface UserData {
 	user: {
 		name: string;
 		lastName: string;
+	};
+}
+
+// Define an interface for the error response from Axios
+interface AxiosError {
+	response?: {
+		data?: {
+			message?: string;
+		};
 	};
 }
 
@@ -21,20 +31,19 @@ export default function Dashboard() {
 			router.push("/login"); // Redirect to login if no token
 		} else {
 			axios
-				.get<AxiosResponse<UserData>>(
-					`${process.env.NEXT_PUBLIC_API_URL}/auth/me`,
-					{
-						headers: {
-							Authorization: token,
-						},
-					}
-				)
-				.then((response: AxiosResponse<UserData>) => {
-					setUserData(response.data); // Assuming you have a function setUserData
+				.get<UserData>(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`, {
+					headers: {
+						Authorization: token,
+					},
 				})
-				.catch((error: any) => {
-					// You can refine the type of error if you know the structure
-					console.error(error);
+				.then((response: AxiosResponse<UserData>) => {
+					setUserData(response.data); // Set the user data from response
+				})
+				.catch((error: AxiosError) => {
+					// Improved type definition for error handling
+					console.error(
+						error.response?.data?.message || "An error occurred"
+					);
 					router.push("/login");
 				});
 		}

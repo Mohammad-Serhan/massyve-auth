@@ -14,9 +14,9 @@ module.exports = {
 	},
 	database: {
 		local:
-			ENV === "DEV"
-			  ? process.env.db_local
-			  :
+			// ENV === "DEV"
+			//   ? process.env.db_local
+			//   :
 			process.env.db_URL,
 	},
 };

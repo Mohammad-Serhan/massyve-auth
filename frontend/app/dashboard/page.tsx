@@ -4,8 +4,15 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
+interface UserData {
+	user: {
+		name: string;
+		lastName: string;
+	};
+}
+
 export default function Dashboard() {
-	const [userData, setUserData] = useState(null);
+	const [userData, setUserData] = useState<UserData | null>(null);
 	const router = useRouter();
 
 	useEffect(() => {
@@ -31,15 +38,14 @@ export default function Dashboard() {
 
 	if (!userData) return <p>Loading...</p>;
 
-	// Check if userData.user exists before rendering the name and lastName
 	return (
-		<div className="">
+		<div className="p-5">
 			{userData?.user ? (
-				<h1 className="p-5">
+				<h1>
 					Welcome, {userData.user.name}, {userData.user.lastName}
 				</h1>
 			) : (
-				<h1 className="p-5">No user info available</h1>
+				<h1>No user info available</h1>
 			)}
 		</div>
 	);

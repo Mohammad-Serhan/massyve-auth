@@ -35,38 +35,64 @@ export default function LoginPage() {
 	};
 
 	return (
-		<div className="login-page">
-			<h1>Sign Up</h1>
-			<form onSubmit={handleLogin}>
-				<input
-					type="text"
-					placeholder="email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					required
-				/>
-				<input
-					type="password"
-					placeholder="Password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					required
-				/>
-				<button type="submit">Login</button>
-			</form>
+		<>
+			<div className="flex justify-center items-center h-screen bg-gray-100">
+				<div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+					<h2 className="text-2xl text-black font-bold mb-8 text-center">
+						Sign Up
+					</h2>
+					<form onSubmit={handleLogin}>
+						<div className="mb-6">
+							<label
+								htmlFor="email"
+								className="block text-gray-700 text-sm font-bold mb-2"
+							>
+								Email
+							</label>
+							<input
+								type="email"
+								id="email"
+								name="email"
+								className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+								placeholder="Enter your email"
+								autoComplete="email"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								required
+							/>
+						</div>
 
-			<style jsx>{`
-				.login-page {
-					max-width: 300px;
-					margin: 0 auto;
-				}
-				input {
-					display: block;
-					margin-bottom: 10px;
-					padding: 8px;
-					width: 100%;
-				}
-			`}</style>
-		</div>
+						<div className="mb-6">
+							<label
+								htmlFor="password"
+								className="block text-gray-700 text-sm font-bold mb-2"
+							>
+								Password
+							</label>
+							<input
+								type="password"
+								id="password"
+								name="password"
+								className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+								placeholder="Enter your password"
+								autoComplete="new-password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								required
+							/>
+						</div>
+
+						<div className="mb-6">
+							<button
+								type="submit"
+								className="w-full px-3 py-2 bg-indigo-500 text-white font-bold rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+							>
+								Sign Up
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</>
 	);
 }

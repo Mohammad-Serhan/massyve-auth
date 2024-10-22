@@ -55,7 +55,7 @@ export default function Dashboard() {
 		<div className="p-5">
 			{userData?.user ? (
 				<h1>
-					Welcome, {userData.user.name}, {userData.user.lastName}
+					Welcome, {userData.user.name},  {userData.user.lastName}
 				</h1>
 			) : (
 				<h1>No user info available</h1>

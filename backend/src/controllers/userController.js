@@ -65,10 +65,13 @@ exports.loginUser = async (req, res) => {
 			authenticated: true,
 			token
 		});
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error logging in" });
-  }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ 
+            message: "Error logging in",
+            error: error.message
+         });
+    }
 };
 
 

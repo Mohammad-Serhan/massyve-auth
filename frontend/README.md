@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Basic Authentication System
 
-## Getting Started
+## Overview
+This project demonstrates a basic authentication system using Node.js, Next.js, and MongoDB. The goal is to implement a full-stack solution for user login, including backend authentication endpoints and a frontend login page. The system utilizes JWT for secure authentication and integrates the frontend with the backend.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tech Stack
+- **Backend:** Node.js, Express.js/Fastify.js
+- **Frontend:** Next.js
+- **Database:** MongoDB
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Steps to Implement
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **Backend (Node.js)**
+1. **Initialize a Node.js Server:**
+   - Use a package manager like Yarn, npm, or pnpm to set up the server.
+   - Example:
+     ```bash
+     mkdir frontend && cd frontend
+     npm init -y
+     ```
 
-## Learn More
+2. **Install Required Packages:**
+   - Install necessary dependencies:
+     ```bash
+     npm install express jsonwebtoken mongoose dotenv cors body-parser
+     ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Set Up Express.js/Fastify.js:**
+   - Create routes and endpoints for authentication.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Create Authentication Endpoints:**
+   - **Sign Up Endpoint:** To register new users.
+   - **Login Endpoint:** To authenticate users and return a JWT token.
+   - Use middlewares to validate JWT tokens for protected routes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. **Set Up MongoDB:**
+   - Connect to a MongoDB database and add mock user data.
+   - Example Schema:
+     ```javascript
+     const userSchema = new mongoose.Schema({
+       username: String,
+       password: String,
+     });
+     ```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## How to Run the Project
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### **Backend**
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the server:
+   ```bash
+   npm start
+   ```
+
+### **Frontend**
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the Next.js development server:
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## Example API Endpoints
+1. **POST /login**
+   - **Request Body:**
+     ```json
+     {
+       "username": "example",
+       "password": "password123"
+     }
+     ```
+   - **Response:**
+     ```json
+     {
+       "token": "your.jwt.token"
+     }
+     ```
+
+2. **GET /user**
+   - **Headers:**
+     ```json
+     {
+       "Authorization": "Bearer your.jwt.token"
+     }
+     ```
+   - **Response:**
+     ```json
+     {
+       "username": "example",
+       "email": "example@example.com"
+     }
+     ```
+
+---
